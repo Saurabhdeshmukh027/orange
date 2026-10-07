@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VIDHARBHA FRESH — My Fresh Journey</title>
+<style>
+:root{
+  --orange:#f47b20; --green:#2f7d32; --dark:#17351f;
+  --cream:#fffaf0; --light:#f4f8ef; --gold:#e9b949;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--cream);color:var(--dark);line-height:1.5}
+header{background:linear-gradient(135deg,#f47b20,#ffb52e);color:white;text-align:center;padding:38px 20px 30px}
+.logo{font-weight:900;letter-spacing:2px;font-size:27px}
+header h1{font-size:34px;margin:12px 0 6px}
+header p{margin:0;font-size:16px}
+.container{max-width:760px;margin:auto;padding:20px}
+.card{background:white;border-radius:22px;padding:24px;margin:16px 0;box-shadow:0 7px 25px rgba(0,0,0,.08)}
+h2{margin-top:0;color:var(--green)}
+h3{color:var(--orange)}
+.badge{display:inline-block;background:#edf7e9;color:var(--green);padding:7px 12px;border-radius:30px;font-weight:bold;font-size:13px}
+.options{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+button{border:0;border-radius:15px;padding:15px;font-size:16px;font-weight:bold;cursor:pointer;background:#f7f1df;color:var(--dark)}
+button:hover{transform:translateY(-1px)}
+.primary{background:var(--orange);color:white;width:100%;margin-top:14px}
+.progress{height:12px;background:#e8eadf;border-radius:20px;overflow:hidden}
+.progress div{height:100%;width:60%;background:var(--green)}
+.points{font-size:30px;font-weight:900;color:var(--orange)}
+.small{font-size:13px;color:#647067}
+.hidden{display:none}
+footer{text-align:center;padding:30px 20px;color:#667}
+hr{border:0;border-top:1px solid #eee;margin:20px 0}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">VIDHARBHA FRESH</div>
+  <h1>My Fresh Journey</h1>
+  <p>Your juice. Your wellness. Your Vidarbha story.</p>
+</header>
+
+<main class="container">
+<section class="card">
+  <span class="badge">STEP 1 • CHOOSE YOUR SIP</span>
+  <h2>What did you enjoy today?</h2>
+  <div class="options">
+    <button onclick="selectDrink('Orange')">🍊 ORANGE</button>
+    <button onclick="selectDrink('Sweet Lime')">🍈 SWEET LIME</button>
+  </div>
+  <p id="selected" class="small"></p>
+</section>
+
+<section id="wellness" class="card hidden">
+  <span class="badge">STEP 2 • YOUR WELLNESS CARD</span>
+  <h2 id="wellnessTitle">Your Fresh Choice</h2>
+  <p id="wellnessText"></p>
+  <div class="options">
+    <button>🌱 Vitamin C source</button>
+    <button>💧 Refreshing fruit-based choice</button>
+    <button>🍊 Naturally occurring nutrients</button>
+    <button>⚖️ Enjoy as part of a balanced lifestyle</button>
+  </div>
+  <p class="small">Wellness information is general nutrition information, not medical advice.</p>
+</section>
+
+<section class="card">
+  <span class="badge">STEP 3 • DISCOVER THE STORY</span>
+  <h2>🌱 From Warud to Your Glass</h2>
+  <p><b>ORCHARD → FARMER → FRUIT → FRESHNESS</b></p>
+  <p>Every sip begins with Vidarbha's orchards. Our concept connects local fruit, farmer stories and a modern customer experience.</p>
+  <button class="primary" onclick="alert('Coming soon: Orchard story video and farmer journey.')">▶ WATCH THE ORCHARD STORY</button>
+</section>
+
+<section class="card">
+  <span class="badge">STEP 4 • FRESH CLUB</span>
+  <h2>⭐ Your Fresh Points</h2>
+  <div class="points">+10 Points</div>
+  <p>You completed today's Fresh Journey.</p>
+  <div class="progress"><div></div></div>
+  <p class="small">Example loyalty system: Buy → Earn → Reward → Return.</p>
+  <button class="primary" onclick="joinClub()">JOIN VIDHARBHA FRESH CLUB</button>
+  <p id="clubMsg"></p>
+</section>
+
+<section class="card">
+  <span class="badge">STEP 5 • YOUR VOICE BUILDS OUR BRAND</span>
+  <h2>Which flavour should we launch next?</h2>
+  <div class="options">
+    <button onclick="vote('Orange')">🍊 Orange</button>
+    <button onclick="vote('Sweet Lime')">🍈 Sweet Lime</button>
+    <button onclick="vote('Orange + Sweet Lime')">✨ Orange + Sweet Lime</button>
+    <button onclick="vote('Vidarbha Twist')">🔥 Vidarbha Twist</button>
+  </div>
+  <p id="voteMsg"></p>
+</section>
+
+<section class="card" style="text-align:center">
+  <h2>You didn't just drink a juice.</h2>
+  <p><b>You became part of its journey.</b></p>
+  <hr>
+  <h2 style="color:var(--orange)">VIDHARBHA FRESH</h2>
+  <p><i>From Vidarbha's Orchards. Fresh in Every Sip.</i></p>
+  <p><b>Taste the Land. Feel the Freshness.</b></p>
+</section>
+</main>
+
+<footer>
+  VIDHARBHA FRESH • Warud, Amravati • Concept Experience
+</footer>
+
+<script>
+function selectDrink(drink){
+  document.getElementById('selected').textContent = 'Selected: ' + drink + ' ✓';
+  document.getElementById('wellness').classList.remove('hidden');
+  document.getElementById('wellnessTitle').textContent = drink + ' Wellness Card';
+  document.getElementById('wellnessText').textContent =
+    drink + ' is presented as a fresh fruit-based choice with naturally occurring nutrients and vitamin C. Enjoy it as part of a balanced lifestyle.';
+  document.getElementById('wellness').scrollIntoView({behavior:'smooth'});
+}
+function joinClub(){
+  document.getElementById('clubMsg').innerHTML =
+    '<b>🎉 Welcome to the Fresh Club!</b><br><span class="small">In the live version, this button can collect an optional phone/email with consent and connect to a loyalty system.</span>';
+}
+function vote(flavour){
+  document.getElementById('voteMsg').innerHTML =
+    '❤️ Thanks! Your vote for <b>'+flavour+'</b> has been recorded in this demo.';
+}
+</script>
+</body>
+</html>
